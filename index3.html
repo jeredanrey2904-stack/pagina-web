@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invernadero Inteligente - Expo Feria 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b1320;
+      color: #e2e8f0;
+    }
+
+    .font-tech {
+      font-family: 'Orbitron', monospace;
+    }
+
+    .lcd-display {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #1a3a5f;
+      color: #00ffcc;
+      text-shadow: 0 0 8px rgba(0,255,204,0.6);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-card-hover:hover {
+      border-color: rgba(34, 197, 94, 0.4);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+
+    /* Custom range slider styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: #1e293b;
+      border-radius: 8px;
+      height: 8px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #22c55e;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(34,197,94,0.8);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-slate-900">
+
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400">
+          <i class="fa-solid fa-seedling text-xl"></i>
+        </div>
+        <div>
+          <span class="font-tech text-lg font-extrabold tracking-wider bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent block">INVERNADERO INTELIGENTE</span>
+          <span class="text-xs text-slate-400">Complejo Educativo Católico San Francisco</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+        <a href="#inicio" class="hover:text-emerald-400 transition-colors">Inicio</a>
+        <a href="#integrantes" class="hover:text-emerald-400 transition-colors">Integrantes</a>
+        <a href="#documentacion-pdf" class="hover:text-emerald-400 transition-colors">Documentos Fases</a>
+        <a href="#simulador" class="hover:text-emerald-400 transition-colors">Simulador</a>
+        <a href="#faqs" class="hover:text-emerald-400 transition-colors">Preguntas Clave</a>
+        <a href="#documentacion" class="hover:text-emerald-400 transition-colors">Documentación</a>
+      </nav>
+      <div class="flex items-center space-x-2">
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+          Expo Feria 2026
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- Hero / Resumen del Proyecto -->
+    <section id="inicio" class="relative py-16 lg:py-24 overflow-hidden border-b border-slate-800/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/90 border border-slate-700 text-xs text-slate-300">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Diplomado de Robótica • Docente: Lic. Carlos Galdámez
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Control Ambiental Automatizado con <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Arduino UNO</span>
+            </h1>
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+              Sistema de monitoreo de microclima diseñado para optimizar el riego, la ventilación automatizada y la regulación térmica en cultivos cerrados. Desarrollado con tecnología accesible y componentes de bajo costo para impulsar la soberanía alimentaria y la sostenibilidad ambiental.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4">
+              <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700/60">
+                <i class="fa-solid fa-droplet text-emerald-400 text-xl mb-1"></i>
+                <div class="text-xl font-bold text-white font-tech">Humedad</div>
+                <div class="text-xs text-slate-400">Control por límites (&lt;30% o &gt;70%)</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700/60">
+                <i class="fa-solid fa-temperature-high text-amber-400 text-xl mb-1"></i>
+                <div class="text-xl font-bold text-white font-tech">Ventana</div>
+                <div class="text-xs text-slate-400">Servo 90° si Temp &gt; 30°C</div>
+              </div>
+              <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700/60 col-span-2 sm:col-span-1">
+                <i class="fa-solid fa-bell text-rose-400 text-xl mb-1"></i>
+                <div class="text-xl font-bold text-white font-tech">Alertas</div>
+                <div class="text-xs text-slate-400">Buzzer (Pin 13) + Extractor</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card de Información del Stand -->
+          <div class="lg:col-span-5">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 relative border-emerald-500/30">
+              <div class="absolute -top-3 -right-3 bg-emerald-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                Fase Final
+              </div>
+              <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-clipboard-check text-emerald-400"></i>
+                Ficha General del Robot
+              </h3>
+              <ul class="space-y-3 text-sm">
+                <li class="flex justify-between border-b border-slate-800 pb-2">
+                  <span class="text-slate-400">Proyecto:</span>
+                  <span class="text-white font-semibold">Invernadero Inteligente</span>
+                </li>
+                <li class="flex justify-between border-b border-slate-800 pb-2">
+                  <span class="text-slate-400">Institución:</span>
+                  <span class="text-white font-semibold">C.E.C. San Francisco</span>
+                </li>
+                <li class="flex justify-between border-b border-slate-800 pb-2">
+                  <span class="text-slate-400">Grado:</span>
+                  <span class="text-white font-semibold">2.° Año de Bachillerato</span>
+                </li>
+                <li class="flex justify-between border-b border-slate-800 pb-2">
+                  <span class="text-slate-400">Evento:</span>
+                  <span class="text-emerald-400 font-semibold">Mini Expo Feria Interna 2026</span>
+                </li>
+                <li class="flex justify-between items-center pt-1">
+                  <span class="text-slate-400">Repositorio Oficial:</span>
+                  <a href="https://github.com/jeredanrey2904-stack/invernadero-inteligente-/blob/main/README.md" target="_blank" class="text-cyan-400 hover:underline flex items-center gap-1 font-mono text-xs bg-cyan-950/40 px-2.5 py-1 rounded-lg border border-cyan-500/30">
+                    <i class="fa-brands fa-github"></i> GitHub Code
+                  </a>
+                </li>
+                <li class="flex justify-between items-center pt-1">
+                  <span class="text-slate-400">Video Demostrativo:</span>
+                  <a href="https://youtu.be/Cz_nvtbw0Ao?si=7sg4LZx-8_ApkUUy" target="_blank" class="text-rose-400 hover:underline flex items-center gap-1 font-mono text-xs bg-rose-950/40 px-2.5 py-1 rounded-lg border border-rose-500/30">
+                    <i class="fa-brands fa-youtube"></i> Ver en YouTube
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Integrantes y Roles -->
+    <section id="integrantes" class="py-16 bg-slate-900/60 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl font-extrabold text-white font-tech tracking-wide">INTEGRANTES Y APORTES</h2>
+          <p class="text-slate-400 text-sm mt-2">Distribución de responsabilidades para el desarrollo, programación, prototipado y documentación.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <!-- Alisson -->
+          <div class="glass-card p-5 rounded-xl border border-slate-800 text-center glass-card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold font-tech border border-emerald-500/30">
+                AA
+              </div>
+              <h4 class="text-white font-semibold text-sm">Alisson Ariana</h4>
+              <p class="text-slate-300 text-xs font-medium uppercase tracking-wider mt-0.5">Avilés Renderos</p>
+              <p class="text-slate-500 text-[11px] mt-1 font-mono">NIE: 6078903</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block mb-1">Aportes:</span>
+              <p class="text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800 font-medium">Documentación F4 y F5</p>
+            </div>
+          </div>
+
+          <!-- Jeremy -->
+          <div class="glass-card p-5 rounded-xl border border-slate-800 text-center glass-card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl font-bold font-tech border border-cyan-500/30">
+                JR
+              </div>
+              <h4 class="text-white font-semibold text-sm">Jeremy Daniel</h4>
+              <p class="text-slate-300 text-xs font-medium uppercase tracking-wider mt-0.5">Reyes Hernández</p>
+              <p class="text-slate-500 text-[11px] mt-1 font-mono">NIE: 3166052</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider block mb-1">Aportes:</span>
+              <p class="text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800 font-medium">F1, F2, F3, Circuito y Página Web</p>
+            </div>
+          </div>
+
+          <!-- Moises -->
+          <div class="glass-card p-5 rounded-xl border border-slate-800 text-center glass-card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl font-bold font-tech border border-teal-500/30">
+                MH
+              </div>
+              <h4 class="text-white font-semibold text-sm">Moisés David</h4>
+              <p class="text-slate-300 text-xs font-medium uppercase tracking-wider mt-0.5">Hernández Bautista</p>
+              <p class="text-slate-500 text-[11px] mt-1 font-mono">NIE: 6652295</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <span class="text-[10px] text-teal-400 font-bold uppercase tracking-wider block mb-1">Aportes:</span>
+              <p class="text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800 font-medium">Adjuntar imágenes, fotos y video</p>
+            </div>
+          </div>
+
+          <!-- Melanie -->
+          <div class="glass-card p-5 rounded-xl border border-slate-800 text-center glass-card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl font-bold font-tech border border-indigo-500/30">
+                MG
+              </div>
+              <h4 class="text-white font-semibold text-sm">Melanie Camila</h4>
+              <p class="text-slate-300 text-xs font-medium uppercase tracking-wider mt-0.5">Hernández Galdámez</p>
+              <p class="text-slate-500 text-[11px] mt-1 font-mono">NIE: 6652086</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <span class="text-[10px] text-indigo-400 font-bold uppercase tracking-wider block mb-1">Aportes:</span>
+              <p class="text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800 font-medium">Correcciones y conexión de cables</p>
+            </div>
+          </div>
+
+          <!-- Xavier -->
+          <div class="glass-card p-5 rounded-xl border border-slate-800 text-center glass-card-hover flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 mx-auto mb-3 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl font-bold font-tech border border-amber-500/30">
+                XG
+              </div>
+              <h4 class="text-white font-semibold text-sm">Xavier Benjamín</h4>
+              <p class="text-slate-300 text-xs font-medium uppercase tracking-wider mt-0.5">García López</p>
+              <p class="text-slate-500 text-[11px] mt-1 font-mono">NIE: 5027952</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80">
+              <span class="text-[10px] text-amber-400 font-bold uppercase tracking-wider block mb-1">Aportes:</span>
+              <p class="text-xs text-slate-300 bg-slate-900/80 p-2 rounded-lg border border-slate-800 font-medium">Cotización de materiales</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Documentos de Fases (PDFs y Entregables Institucionales) -->
+    <section id="documentacion-pdf" class="py-16 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Archivos Institucionales</span>
+          <h2 class="text-3xl font-extrabold text-white font-tech tracking-wide mt-1">DOCUMENTOS DE LAS FASES Y ENTREGABLES</h2>
+          <p class="text-slate-400 text-sm mt-2">Accede directamente a los reportes en formato PDF correspondientes a cada etapa del desarrollo del proyecto y la documentación consolidada F4 y F5.</p>
+        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+          <!-- Documento F1 -->
+          <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between text-center glass-card-hover">
+            <div>
+              <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg font-bold border border-blue-500/30">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <h4 class="text-white font-semibold text-base mb-1">Documento F1</h4>
+              <p class="text-slate-400 text-xs mb-4">Planteamiento inicial, marco teórico y alcances del proyecto.</p>
+            </div>
+            <a href="efes/F1 (2).pdf" target="_blank" class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir F1
+            </a>
+          </div>
+
+          <!-- Documento F2 -->
+          <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between text-center glass-card-hover">
+            <div>
+              <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg font-bold border border-emerald-500/30">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <h4 class="text-white font-semibold text-base mb-1">Documento F2</h4>
+              <p class="text-slate-400 text-xs mb-4">Requerimientos de equipo, BOM, software y presupuesto.</p>
+            </div>
+            <a href="efes/F2 RequerimientoEquipo Invernadero Inteligente 28AGO26.pdf" target="_blank" class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir F2
+            </a>
+          </div>
+
+          <!-- Documento F3 -->
+          <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between text-center glass-card-hover">
+            <div>
+              <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-lg font-bold border border-teal-500/30">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <h4 class="text-white font-semibold text-base mb-1">Documento F3</h4>
+              <p class="text-slate-400 text-xs mb-4">Ensamblaje, cableado, firmware y pruebas de integración.</p>
+            </div>
+            <a href="efes/F3 RequerimientoEquipo Invernadero Inteligente 02OCT26.pdf" target="_blank" class="w-full py-2.5 px-4 bg-teal-600 hover:bg-teal-500 text-white font-semibold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir F3
+            </a>
+          </div>
+
+          <!-- Documento F4 -->
+          <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between text-center glass-card-hover border-emerald-500/40">
+            <div>
+              <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg font-bold border border-amber-500/30">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <h4 class="text-white font-semibold text-base mb-1">Documento F4</h4>
+              <p class="text-slate-400 text-xs mb-4">Entregables: manual de usuario, técnico e informe final.</p>
+            </div>
+            <a href="efes/F4InvernaderoAutomatizado_19OCT2026.pdf" target="_blank" class="w-full py-2.5 px-4 bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir F4
+            </a>
+          </div>
+
+          <!-- Documento F5 -->
+          <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between text-center glass-card-hover border-cyan-500/40">
+            <div>
+              <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg font-bold border border-cyan-500/30">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <h4 class="text-white font-semibold text-base mb-1">Documento F5</h4>
+              <p class="text-slate-400 text-xs mb-4">Guía consolidada de proyectos, fundamentos y validación de stand.</p>
+            </div>
+            <a href="efes/F5 RequerimientoEquipo Invernadero Inteligente.pdf" target="_blank" class="w-full py-2.5 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir F5
+            </a>
+          </div>
+        </div>
+    <!-- Simulador interactivo en tiempo real -->
+    <section id="simulador" class="py-16 border-b border-slate-800 bg-slate-900/30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <h2 class="text-3xl font-extrabold text-white font-tech tracking-wide">SIMULADOR EN TIEMPO REAL</h2>
+          <p class="text-slate-400 text-sm mt-2">Prueba la lógica del circuito ejecutando el código C++ real con los controles de entrada analógica.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Panel de Controles (Entradas) -->
+          <div class="lg:col-span-5 glass-card p-6 rounded-2xl border-slate-800 space-y-6">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center justify-between">
+              <span><i class="fa-solid fa-sliders text-emerald-400 mr-2"></i> Controles del Entorno</span>
+              <span class="text-xs font-mono text-slate-400">Pines A0 & A1</span>
+            </h3>
+
+            <!-- Slider Temperatura (A0) -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-sm">
+                <label class="text-slate-300 font-medium">Sensor Temperatura (TMP36 / A0)</label>
+                <span id="temp-val" class="text-amber-400 font-bold font-tech text-base">25 °C</span>
+              </div>
+              <input id="slider-temp" type="range" min="-10" max="60" value="25" class="w-full">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                <span>-10°C</span>
+                <span>30°C (Ventana)</span>
+                <span>40°C (Alarma)</span>
+                <span>60°C</span>
+              </div>
+            </div>
+
+            <!-- Slider Humedad (A1) -->
+            <div class="space-y-2 pt-2">
+              <div class="flex justify-between items-center text-sm">
+                <label class="text-slate-300 font-medium">Sensor Humedad del Suelo (A1)</label>
+                <span id="hum-val" class="text-cyan-400 font-bold font-tech text-base">50 %</span>
+              </div>
+              <input id="slider-hum" type="range" min="0" max="100" value="50" class="w-full">
+              <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                <span>0% (Seco)</span>
+                <span>30% (Alerta)</span>
+                <span>70% (Exceso)</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-400 space-y-1">
+              <div class="font-semibold text-slate-300 mb-1"><i class="fa-solid fa-circle-info text-emerald-400 mr-1"></i> Reglas de Control Activas:</div>
+              <p><b>T &gt; 30°C</b>: Servomotor gira a 90° para ventilar.</p>
+              <p><b>T &gt; 40°C</b>: Servomotor 90° + Extractor (Pin 8) + Tono 1661 Hz.</p>
+              <p><b>H &lt; 30% o H &gt; 70%</b>: Tono de advertencia de humedad 1200 Hz.</p>
+            </div>
+          </div>
+
+          <!-- Visualización Hardware (Salidas) -->
+          <div class="lg:col-span-7 glass-card p-6 rounded-2xl border-slate-800 space-y-6">
+            <h3 class="text-lg font-bold text-white border-b border-slate-800 pb-3 flex items-center justify-between">
+              <span><i class="fa-solid fa-microchip text-emerald-400 mr-2"></i> Estado de Actuadores y Pantalla</span>
+              <span id="system-status" class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">SISTEMA OK</span>
+            </h3>
+
+            <!-- Pantalla LCD 16x2 Simulada -->
+            <div class="space-y-1">
+              <span class="text-xs text-slate-400 font-medium">Pantalla LCD 16x2 (I2C)</span>
+              <div class="lcd-display p-4 rounded-xl border-2 border-slate-700 text-lg font-bold tracking-widest space-y-1">
+                <div id="lcd-line-1">T= 25</div>
+                <div id="lcd-line-2">H= 50</div>
+              </div>
+            </div>
+
+            <!-- Estado de Componentes Físicos -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <!-- Servomotor Ventana (Pin 7) -->
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                <span class="text-xs text-slate-400 block mb-2">Servomotor Ventana (Pin 7)</span>
+                <div id="servo-graphic" class="w-16 h-16 mx-auto rounded-full border-2 border-slate-700 flex items-center justify-center transition-all duration-500">
+                  <div id="servo-arm" class="w-1 h-7 bg-emerald-400 rounded-full origin-bottom transition-transform duration-500" style="transform: rotate(0deg);"></div>
+                </div>
+                <span id="servo-angle" class="text-xs font-mono font-bold text-white block mt-2">0° (Cerrada)</span>
+              </div>
+
+              <!-- Extractor (Pin 8) -->
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                <span class="text-xs text-slate-400 block mb-2">Motor Extractor (Pin 8)</span>
+                <div id="fan-icon" class="text-3xl text-slate-600 my-2">
+                  <i class="fa-solid fa-fan"></i>
+                </div>
+                <span id="fan-status" class="text-xs font-mono font-bold text-slate-400 block">APAGADO</span>
+              </div>
+
+              <!-- Alarma Buzzer (Pin 13) -->
+              <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-center">
+                <span class="text-xs text-slate-400 block mb-2">Buzzer Alarma (Pin 13)</span>
+                <div id="buzzer-icon" class="text-3xl text-slate-600 my-2">
+                  <i class="fa-solid fa-volume-xmark"></i>
+                </div>
+                <span id="buzzer-status" class="text-xs font-mono font-bold text-slate-400 block">SILENCIO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Preguntas Clave / Expo Feria 2026 -->
+    <section id="faqs" class="py-16 bg-slate-900/40 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Guía de Exposición</span>
+          <h2 class="text-3xl font-extrabold text-white font-tech tracking-wide mt-1">PREGUNTAS CLAVE DEL PROYECTO</h2>
+          <p class="text-slate-400 text-sm mt-2">Extracto de las preguntas más importantes formuladas en la guía consolidada para la defensa del stand.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="glass-card p-6 rounded-2xl border-slate-800">
+            <h4 class="text-white font-semibold text-base mb-2 flex items-start gap-2">
+              <span class="text-emerald-400 font-bold font-tech">01.</span>
+              ¿Qué problema real resuelve nuestro robot y a quién beneficia?
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Resuelve la vulnerabilidad de las plantas ante climas desfavorables e inestables en espacios reducidos o de cultivo en interiores. Permite automatizar el control térmico y de humedad sin intervención continua del usuario, beneficiando a pequeñas familias, escuelas e iniciativas de agricultura urbana sostenible.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl border-slate-800">
+            <h4 class="text-white font-semibold text-base mb-2 flex items-start gap-2">
+              <span class="text-emerald-400 font-bold font-tech">02.</span>
+              ¿Por qué es un sistema de control de lazo cerrado?
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Porque no opera de forma fija o con horarios rígidos; utiliza sensores (TMP36 y humedad del suelo) para medir continuamente las variables reales del entorno y retroalimentar al microcontrolador Arduino UNO, el cual toma decisiones en tiempo real sobre los actuadores.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl border-slate-800">
+            <h4 class="text-white font-semibold text-base mb-2 flex items-start gap-2">
+              <span class="text-emerald-400 font-bold font-tech">03.</span>
+              ¿Cómo se protegen los componentes electrónicos del agua?
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Mediante un diseño con aislamiento por zonas: la parte electrónica (Arduino, protoboard, pantalla LCD y buzzer) se ubica en un compartimento superior seco, mientras que las sondas de medición y el depósito de agua permanecen aislados en la parte inferior.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl border-slate-800">
+            <h4 class="text-white font-semibold text-base mb-2 flex items-start gap-2">
+              <span class="text-emerald-400 font-bold font-tech">04.</span>
+              ¿Por qué se utilizan relés u optoacopladores para las cargas pesadas?
+            </h4>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Los pines digitales del ATmega328P entregan un máximo de 40 mA por puerto. Componentes como bombas o ventiladores demandan más corriente y pueden dañar el chip. El relé aísla la lógica de control (5V) de la etapa de potencia externa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documentación Técnica Consolidada -->
+    <section id="documentacion" class="py-16 border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl font-extrabold text-white font-tech tracking-wide">DOCUMENTACIÓN DEL SISTEMA</h2>
+          <p class="text-slate-400 text-sm mt-2">Detalles del código fuente, presupuesto y lecciones aprendidas durante las pruebas.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <!-- Código Fuente -->
+          <div class="lg:col-span-7 glass-card p-6 rounded-2xl border-slate-800">
+            <h3 class="text-white font-bold text-base mb-4 flex items-center justify-between">
+              <span><i class="fa-solid fa-code text-emerald-400 mr-2"></i> Código C++ del Firmware</span>
+              <span class="text-xs text-slate-400 font-mono">Arduino IDE</span>
+            </h3>
+            <pre class="bg-slate-950 p-4 rounded-xl text-xs text-emerald-300 font-mono overflow-x-auto max-h-96 border border-slate-800 leading-relaxed">
+#include &lt;Adafruit_LiquidCrystal.h&gt;
+#include &lt;Servo.h&gt;
+
+int TEMPERATURA = 0;
+int HUMEDAD = 0;
+
+Adafruit_LiquidCrystal lcd_1(0);
+Servo servo_7;
+
+void setup() {
+  lcd_1.begin(16, 2);
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
+  Serial.begin(9600);
+  
+  servo_7.attach(7, 500, 2500);
+  pinMode(8, OUTPUT);
+  pinMode(13, OUTPUT); // Buzzer de alarma
+
+  lcd_1.setBacklight(1);
+}
+
+void loop() {
+  // Conversión de lecturas analógicas
+  TEMPERATURA = (-40 + 0.488155 * (analogRead(A0) - 20));
+  HUMEDAD = map(analogRead(A1), 0, 1023, 0, 117);
+
+  // Mapeo en LCD
+  lcd_1.setCursor(0, 0);
+  lcd_1.print("T=      ");
+  lcd_1.setCursor(2, 0);
+  lcd_1.print(TEMPERATURA);
+
+  lcd_1.setCursor(0, 1);
+  lcd_1.print("H=      ");
+  lcd_1.setCursor(2, 1);
+  lcd_1.print(HUMEDAD);
+
+  // Posiciones por defecto
+  servo_7.write(0);
+  digitalWrite(8, LOW);
+
+  // Control térmico por ventana
+  if (TEMPERATURA > 30 && TEMPERATURA <= 40) {
+    servo_7.write(90);
+  } 
+
+  // Alarma crítica por sobretemperatura
+  if (TEMPERATURA > 40 && TEMPERATURA <= 50) {
+    servo_7.write(90);
+    digitalWrite(8, HIGH);
+    tone(13, 1661, 1000);
+  }
+
+  // Alarma por fuera de rango de humedad
+  if (HUMEDAD < 30 || HUMEDAD > 70) {
+    tone(13, 1200, 500);
+  }
+
+  delay(500);
+}</pre>
+          </div>
+
+          <!-- Presupuesto y Lecciones -->
+          <div class="lg:col-span-5 space-y-6">
+            <!-- Desglose de Costos (BOM) -->
+            <div class="glass-card p-6 rounded-2xl border-slate-800">
+              <h3 class="text-white font-bold text-base mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-calculator text-emerald-400"></i> Presupuesto Estimado (BOM)
+              </h3>
+              <div class="space-y-2 text-xs">
+                <div class="flex justify-between py-1 border-b border-slate-800">
+                  <span class="text-slate-300">Kit de Inicio Robótica (Arduino, Protoboard, Sensores)</span>
+                  <span class="text-white font-mono">$20.00</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800">
+                  <span class="text-slate-300">Bomba de agua + Manguera plástica</span>
+                  <span class="text-white font-mono">$2.93</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800">
+                  <span class="text-slate-300">Display LCD 1602 con Mochila I2C</span>
+                  <span class="text-white font-mono">$3.50</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800">
+                  <span class="text-slate-300">Servomotor SG90 + Módulo Relé</span>
+                  <span class="text-white font-mono">$4.50</span>
+                </div>
+                <div class="flex justify-between py-1 font-bold pt-1">
+                  <span class="text-emerald-400">Total Invertido (Hardware)</span>
+                  <span class="text-emerald-400 font-mono">$35.75</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enlaces Rápidos de Repositorio -->
+            <div class="glass-card p-6 rounded-2xl border-slate-800 space-y-3">
+              <h3 class="text-white font-bold text-base flex items-center gap-2">
+                <i class="fa-solid fa-folder-open text-emerald-400"></i> Enlaces y Evidencias
+              </h3>
+              <div class="flex flex-col gap-2">
+                <a href="https://github.com/jeredanrey2904-stack/invernadero-inteligente-/blob/main/README.md" target="_blank" class="text-xs p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-cyan-400 flex items-center justify-between transition-all">
+                  <span class="flex items-center gap-2"><i class="fa-brands fa-github text-base"></i> Repositorio GitHub y Bitácora</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://youtube.com/shorts/Cz_nvtbw0Ao?si=UvNR2DSWbBPyO_Aa" target="_blank" class="text-xs p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-rose-400 flex items-center justify-between transition-all">
+                  <span class="flex items-center gap-2"><i class="fa-brands fa-youtube text-base"></i> Video Demostrativo (YouTube Shorts)</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-card border-t border-slate-800 py-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-400 space-y-2">
+      <p class="font-tech text-slate-300 font-bold tracking-wider">COMPLEJO EDUCATIVO CATÓLICO SAN FRANCISCO • EXPO FERIA 2026</p>
+      <p>Proyecto desarrollado por 2.° Año de Bachillerato - Módulo de Robótica Educativa.</p>
+    </div>
+  </footer>
+
+   <!-- Sección Galería de Fotos del Proyecto -->
+<section id="galeria" class="py-16 bg-slate-900/40 border-b border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Evidencia Fotográfica</span>
+      <h2 class="text-3xl font-extrabold text-white font-tech tracking-wide mt-1">GALERÍA DEL PROYECTO</h2>
+      <p class="text-slate-400 text-sm mt-2">Registro visual de la construcción, ensamblaje del circuito y pruebas del invernadero inteligente.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Foto 1 -->
+      <div class="glass-card rounded-2xl overflow-hidden border-slate-800 glass-card-hover group flex flex-col justify-between cursor-pointer gallery-item">
+        <div class="relative overflow-hidden aspect-video bg-slate-950 flex items-center justify-center">
+          <img src="081ce986-e978-4320-8d98-f56410b81e0c.jpg" alt="Ensamblaje del Circuito" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4 bg-slate-900/60">
+          <h4 class="text-white font-semibold text-sm">Ensamblaje del Circuito</h4>
+          <p class="text-slate-400 text-xs mt-1">Conexión de sensores en la protoboard y Arduino UNO.</p>
+        </div>
+      </div>
+
+      <!-- Foto 2 -->
+      <div class="glass-card rounded-2xl overflow-hidden border-slate-800 glass-card-hover group flex flex-col justify-between cursor-pointer gallery-item">
+        <div class="relative overflow-hidden aspect-video bg-slate-950 flex items-center justify-center">
+          <img src="42910164-4b8a-498c-9642-ce2f7017dcb4.jpg" alt="Estructura del Invernadero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4 bg-slate-900/60">
+          <h4 class="text-white font-semibold text-sm">Estructura del Invernadero</h4>
+          <p class="text-slate-400 text-xs mt-1">Armado con materiales reciclados y ventana automatizada.</p>
+        </div>
+      </div>
+
+      <!-- Foto 3 -->
+      <div class="glass-card rounded-2xl overflow-hidden border-slate-800 glass-card-hover group flex flex-col justify-between cursor-pointer gallery-item">
+        <div class="relative overflow-hidden aspect-video bg-slate-950 flex items-center justify-center">
+          <img src="e64e945c-7c7b-4dd4-84a2-c93a74953188.jpg" alt="Pruebas e Integración" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4 bg-slate-900/60">
+          <h4 class="text-white font-semibold text-sm">Pruebas e Integración</h4>
+          <p class="text-slate-400 text-xs mt-1">Validation del sensor de temperatura y movimiento del servomotor.</p>
+        </div>
+      </div>
+
+      <!-- Foto 4 -->
+      <div class="glass-card rounded-2xl overflow-hidden border-slate-800 glass-card-hover group flex flex-col justify-between cursor-pointer gallery-item">
+        <div class="relative overflow-hidden aspect-video bg-slate-950 flex items-center justify-center">
+          <img src="ca278fef-e3ff-4070-9db7-8a159c22be2b.jpg" alt="Trabajo en Equipo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+            </svg>
+          </div>
+        </div>
+        <div class="p-4 bg-slate-900/60">
+          <h4 class="text-white font-semibold text-sm">Trabajo en Equipo</h4>
+          <p class="text-slate-400 text-xs mt-1">Sesión de trabajo, programación y preparación del proyecto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal / Visor para Agrandar la Imagen -->
+<div id="imageModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+  <!-- Botón Cerrar (X) -->
+  <button id="closeModalBtn" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 p-2 rounded-full transition-colors z-10 cursor-pointer">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Contenedor de la Imagen Agrandada -->
+  <div class="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+    <img id="modalImage" src="" alt="Vista ampliada" class="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl border border-slate-700">
+    <p id="modalCaption" class="text-white font-medium text-center mt-4 bg-slate-900/80 px-4 py-2 rounded-lg border border-slate-800"></p>
+  </div>
+</div>
+
+<!-- Script Mejorado -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    // Seleccionamos todas las tarjetas de la galería
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const title = item.querySelector('h4').textContent;
+
+        if (img) {
+          modalImg.src = img.src; // Usa exactamente la misma ruta que cargó con éxito la tarjeta
+          modalCaption.textContent = title;
+          modal.classList.remove('hidden');
+          document.body.style.overflow = 'hidden'; // Bloquea el scroll de atrás
+        }
+      });
+    });
+
+    function closeModal() {
+      modal.classList.add('hidden');
+      modalImg.src = ''; // Limpia la imagen
+      document.body.style.overflow = ''; // Restaura el scroll
+    }
+
+    // Eventos para cerrar
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', closeModal);
+
+    // Tecla ESC
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+  });
+</script>
+
+<!-- Modal / Visor para Agrandar la Imagen -->
+<div id="imageModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4" onclick="closeModal()">
+  <!-- Botón Cerrar (X) -->
+  <button onclick="closeModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 p-2 rounded-full transition-colors z-10">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Contenedor de la Imagen Agrandada -->
+  <div class="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
+    <img id="modalImage" src="" alt="Vista ampliada" class="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl border border-slate-700">
+    <p id="modalCaption" class="text-white font-medium text-center mt-4 bg-slate-900/80 px-4 py-2 rounded-lg border border-slate-800"></p>
+  </div>
+</div>
+
+<!-- Script para la funcionalidad -->
+<script>
+  function openModal(imageSrc, captionText) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+
+    modalImg.src = imageSrc;
+    modalCaption.textContent = captionText;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Desactiva el scroll del fondo
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = ''; // Reactiva el scroll
+  }
+
+  // Permite cerrar el modal presionando la tecla ESC
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
+
+    <!-- Sección del Simulador -->
+    <section id="simulador" class="py-16 border-b border-slate-800 bg-slate-900/30">
+       <!-- ... código del simulador ... -->
+    </section>
+
+  <!-- Script del Simulador Interactivo -->
+  <script>
+    const sliderTemp = document.getElementById('slider-temp');
+    const sliderHum = document.getElementById('slider-hum');
+    const tempVal = document.getElementById('temp-val');
+    const humVal = document.getElementById('hum-val');
+    const lcdLine1 = document.getElementById('lcd-line-1');
+    const lcdLine2 = document.getElementById('lcd-line-2');
+    const servoArm = document.getElementById('servo-arm');
+    const servoAngle = document.getElementById('servo-angle');
+    const fanIcon = document.getElementById('fan-icon');
+    const fanStatus = document.getElementById('fan-status');
+    const buzzerIcon = document.getElementById('buzzer-icon');
+    const buzzerStatus = document.getElementById('buzzer-status');
+    const systemStatus = document.getElementById('system-status');
+
+    function updateSimulation() {
+      const temp = parseInt(sliderTemp.value);
+      const hum = parseInt(sliderHum.value);
+
+      tempVal.textContent = temp + " °C";
+      humVal.textContent = hum + " %";
+
+      lcdLine1.textContent = "T= " + temp + "C";
+      lcdLine2.textContent = "H= " + hum + "%";
+
+      let alerts = [];
+
+      // Control Servomotor / Ventana (Temp > 30°C)
+      if (temp > 30) {
+        servoArm.style.transform = 'rotate(90deg)';
+        servoAngle.textContent = '90° (Abierta)';
+      } else {
+        servoArm.style.transform = 'rotate(0deg)';
+        servoAngle.textContent = '0° (Cerrada)';
+      }
+
+      // Control Extractor (Temp > 40°C)
+      if (temp > 40) {
+        fanIcon.className = "text-3xl text-cyan-400 my-2 animate-spin";
+        fanStatus.textContent = "ENCENDIDO";
+        fanStatus.className = "text-xs font-mono font-bold text-cyan-400 block";
+        alerts.anim = true;
+      } else {
+        fanIcon.className = "text-3xl text-slate-600 my-2";
+        fanStatus.textContent = "APAGADO";
+        fanStatus.className = "text-xs font-mono font-bold text-slate-400 block";
+      }
+
+      // Control Buzzer (Temp > 40 o Humedad fuera de rango <30 o >70)
+      if (temp > 40 || hum < 30 || hum > 70) {
+        buzzerIcon.className = "text-3xl text-rose-500 my-2 animate-bounce";
+        buzzerStatus.textContent = "¡ALERTA ACTIVA!";
+        buzzerStatus.className = "text-xs font-mono font-bold text-rose-400 block";
+        systemStatus.textContent = "ALERTA CRÍTICA";
+        systemStatus.className = "text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 animate-pulse";
+      } else {
+        buzzerIcon.className = "text-3xl text-slate-600 my-2";
+        buzzerStatus.textContent = "SILENCIO";
+        buzzerStatus.className = "text-xs font-mono font-bold text-slate-400 block";
+        systemStatus.textContent = "SISTEMA OK";
+        systemStatus.className = "text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40";
+      }
+    }
+
+    sliderTemp.addEventListener('input', updateSimulation);
+    sliderHum.addEventListener('input', updateSimulation);
+    updateSimulation();
+  </script>
+</body>
+</html>
